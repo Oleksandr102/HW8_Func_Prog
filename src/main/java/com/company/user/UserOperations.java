@@ -38,10 +38,10 @@ public class UserOperations {
                 .forEach(System.out::println);
     }
 
-    private static void lvivAVG(List<User> userList, String city) {
+    private static void lvivAVG(List<User> userList, String cityName) {
         System.out.println("Average age of Lviv is: " +
                 userList.stream()
-                        .filter(user -> user.getCity().equals(city))
+                        .filter(user -> user.getCity().equals(cityName))
                         .mapToInt(User::getAge)
                         .average()
                         .getAsDouble());
