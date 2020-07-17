@@ -1,5 +1,7 @@
 package main.java.com.company.user;
 
+import java.util.Objects;
+
 public class User {
 
     private String name;
@@ -44,5 +46,21 @@ public class User {
                 ", city='" + city + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return getAge() == user.getAge() &&
+                getName().equals(user.getName()) &&
+                getCity().equals(user.getCity());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAge(), getCity());
+    }
+
 
 }

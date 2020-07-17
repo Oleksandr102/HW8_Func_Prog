@@ -7,38 +7,39 @@ import java.util.List;
 public class UserOperations {
 
     List<User> userList = new ArrayList<>();
-
+    List<User> userList2 = new ArrayList<>();
     public UserOperations() {
-        userList.add(new User("Вася", 16, "Днепр"));
-        userList.add(new User("Петя", 23, "Днепр"));
-        userList.add(new User("Елена", 42, "Луцк"));
-        userList.add(new User("Елена", 92, "Чернигов"));
-        userList.add(new User("Сергей", 5, "Киев"));
-        userList.add(new User("Марина", 32, "Киев"));
-        userList.add(new User("Иван Иванович", 69, "Львов"));
+        userList.add(new User("Vasya", 16, "Dnepr"));
+        userList.add(new User("Petya", 23, "Dnepr"));
+        userList.add(new User("Elena", 42, "Luck"));
+        userList.add(new User("Elena", 92, "Chernigov"));
+        userList.add(new User("Sergay", 5, "Kiev"));
+        userList.add(new User("Marina", 32, "Kiev"));
+        userList.add(new User("Ivan Ivanovich", 69, "Lvov"));
 
-        over40(userList, 40);
-        under50City(userList, 50, "Днепр");
-        lvivAVG(userList, "Львов");
-        outKiev(userList, "Киев");
+        olderThan(userList, 40);
+        youngerThanFromCity(userList, 50, "Dnepr");
+        citizensAverageAge(userList, "Lvov");
+        notFromDesiredCity(userList, "Kiev");
         orderByAge(userList, 3);
+        check(userList,userList2);
     }
 
-    public static void over40(List<User> userList, int age) {
+    public static void olderThan(List<User> userList, int age) {
         System.out.println("Over " + age + ": ");
         userList.stream()
                 .filter(user -> user.getAge() > age)
                 .forEach(System.out::println);
     }
 
-    public static void under50City(List<User> userList, int age, String cityName) {
+    public static void youngerThanFromCity(List<User> userList, int age, String cityName) {
         System.out.println("Under " + age + ": ");
         userList.stream()
                 .filter(user -> user.getAge() < age && user.getCity().equals(cityName))
                 .forEach(System.out::println);
     }
 
-    private static void lvivAVG(List<User> userList, String cityName) {
+    private static void citizensAverageAge(List<User> userList, String cityName) {
         System.out.println("Average age of Lviv is: " +
                 userList.stream()
                         .filter(user -> user.getCity().equals(cityName))
@@ -47,7 +48,7 @@ public class UserOperations {
                         .getAsDouble());
     }
 
-    public static void outKiev(List<User> userList, String cityName) {
+    public static void notFromDesiredCity(List<User> userList, String cityName) {
         int count = Math.toIntExact(userList.stream()
                 .filter(user -> !user.getCity().equals(cityName))
                 .count());
@@ -60,5 +61,11 @@ public class UserOperations {
                 .sorted(Comparator.comparingInt(User::getAge))
                 .limit(value)
                 .forEach(System.out::println);
+    }
+
+    public static void check(List<User> userList, List<User>userList2){
+        if (userList.equals(userList2)){
+            System.out.println("True");
+        }else System.out.println("False");
     }
 }
