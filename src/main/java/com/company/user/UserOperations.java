@@ -7,7 +7,7 @@ import java.util.List;
 public class UserOperations {
 
     List<User> userList = new ArrayList<>();
-    List<User> userList2 = new ArrayList<>();
+
     public UserOperations() {
         userList.add(new User("Vasya", 16, "Dnepr"));
         userList.add(new User("Petya", 23, "Dnepr"));
@@ -22,7 +22,6 @@ public class UserOperations {
         citizensAverageAge(userList, "Lvov");
         notFromDesiredCity(userList, "Kiev");
         orderByAge(userList, 3);
-        check(userList,userList2);
     }
 
     public static void olderThan(List<User> userList, int age) {
@@ -61,11 +60,5 @@ public class UserOperations {
                 .sorted(Comparator.comparingInt(User::getAge))
                 .limit(value)
                 .forEach(System.out::println);
-    }
-
-    public static void check(List<User> userList, List<User>userList2){
-        if (userList.equals(userList2)){
-            System.out.println("True");
-        }else System.out.println("False");
     }
 }
